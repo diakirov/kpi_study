@@ -1,0 +1,89 @@
+#include <iostream>
+#include <string>
+
+// Базовий клас
+class Animal {
+public:
+  // Конструктор
+  Animal() {}
+
+  // Деструктор
+  ~Animal() {}
+
+  // Абстрактний метод
+  virtual void speak() = 0;
+};
+
+// Дочірній клас Mammal
+class Mammal : public Animal {
+private:
+  std::string sound;
+
+public:
+  // Конструктор
+  Mammal(std::string sound) : sound(sound) {}
+
+  // Деструктор
+  ~Mammal() {}
+
+  // Перевизначений метод
+  void speak() override {
+    std::cout << "Звук ссавця: " << sound << std::endl;
+  }
+};
+
+// Дочірній клас Bird
+class Bird : public Animal {
+private:
+  std::string sound;
+
+public:
+  // Конструктор
+  Bird(std::string sound) : sound(sound) {}
+
+  // Деструктор
+  ~Bird() {}
+
+  // Перевизначений метод
+  void speak() override {
+    std::cout << "Звук птаха: " << sound << std::endl;
+  }
+};
+
+// Дочірній клас Fish
+class Fish : public Animal {
+private:
+  std::string sound;
+
+public:
+  // Конструктор
+  Fish(std::string sound) : sound(sound) {}
+
+  // Деструктор
+  ~Fish() {}
+
+  // Перевизначений метод
+  void speak() override {
+    std::cout << "Звук риби: " << sound << std::endl;
+  }
+};
+
+int main() {
+  // Створення масиву об'єктів
+  Animal* animals[3];
+  animals[0] = new Mammal(std::string("Мяв"));
+  animals[1] = new Bird(std::string("Ку-ку"));
+  animals[2] = new Fish(std::string("Плюх"));
+
+  // Виклик методу speak() для кожного об'єкта
+  for (int i = 0; i < 3; i++) {
+    animals[i]->speak();
+  }
+
+  // Звільнення пам'яті
+  for (int i = 0; i < 3; i++) {
+    delete animals[i];
+  }
+
+  return 0;
+}
